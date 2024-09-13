@@ -283,7 +283,9 @@ function setGPS(){
 	totalMithrilGPS = mithrilGPS * mithrilCount
 	totalTitaniumGPS = titaniumGPS * titaniumCount
 	totalRegMineCount = copperCount + bronzeCount + ironCount + silverCount + goldCount + platinumCount + diamondCount + emeraldCount + amethystCount + mithrilCount + titaniumCount 
-	totalAwesomiumGPS = awesomiumGPS * (awesomiumCount + totalRegMineCount)
+	if (awesomiumCount > 1){
+		totalAwesomiumGPS = awesomiumGPS * (awesomiumCount + totalRegMineCount)
+		}
 	gps = totalCopperGPS + totalBronzeGPS + totalIronGPS + totalSilverGPS + totalGoldGPS + totalPlatinumGPS + totalDiamondGPS + totalEmeraldGPS + totalAmethystGPS + totalMithrilGPS + totalTitaniumGPS + totalAwesomiumGPS
 	
 
