@@ -1,0 +1,673 @@
+<script>
+gems = 0
+autoFlag = 0
+flag1 = false
+flag2 = false
+flag3 = false
+flag4 = false
+flag5 = false
+flag6 = false
+flag7 = false
+flag8 = false
+flag9 = false
+flag10 = false
+flag11 = false
+flag12 = false
+clickCount = 1
+gps = 0
+mineCount = 0
+copperCount = 0
+bronzeCount = 0
+ironCount = 0
+silverCount = 0
+goldCount = 0
+platinumCount = 0
+diamondCount = 0
+emeraldCount = 0
+amethystCount = 0
+mithrilCount = 0
+titaniumCount = 0
+awesomiumCount = 0
+copperGPS = 1
+bronzeGPS = 5
+ironGPS = 10
+silverGPS = 50
+goldGPS = 100
+platinumGPS = 500
+diamondGPS = 1000
+emeraldGPS = 5000
+amethystGPS = 10000
+mithrilGPS = 50000
+titaniumGPS = 100000
+awesomiumGPS = 100000
+totalCopperGPS = 0
+totalBronzeGPS = 0
+totalIronGPS = 0
+totalSilverGPS = 0
+totalGoldGPS = 0
+totalPlatinumGPS = 0
+totalDiamondGPS = 0
+totalEmeraldGPS = 0
+totalAmethystGPS = 0
+totalMithrilGPS = 0
+totalTitaniumGPS = 0
+totalAwesomiumGPS = 0
+totalGPS = 0
+copperCost = 10
+bronzeCost = 50
+ironCost = 100
+silverCost = 500
+goldCost = 1000
+platinumCost = 5000
+diamondCost = 10000
+emeraldCost = 50000
+amethystCost = 100000
+mithrilCost = 500000
+titaniumCost = 1000000
+awesomiumCost = 100000000
+
+cup1 = false
+cup2 = false
+cup3 = false	
+cup4 = false
+cup5 = false
+cup6 = false
+cup7 = false
+cup8 = false
+cup9 = false
+cup10 = false
+cup11 = false
+mineTier = "Copper"
+
+
+
+function checkBuy(){
+	if (gems >= copperCost && flag1 === false){
+		var b = document.getElementById("btnm1");
+		b.disabled = false;
+		flag1 = true;
+		} else if(gems < copperCost){
+		var b = document.getElementById("btnm1");
+		b.disabled = true;
+		flag1 = false
+		}
+	if (gems >= bronzeCost && flag2 === false && cup1 === true){
+		var b = document.getElementById("btnm2");
+		b.disabled = false;
+		flag2 = true;
+		} else if(gems < bronzeCost){
+		var b = document.getElementById("btnm2");
+		b.disabled = true;
+		flag2 = false
+		}
+	if (gems >= ironCost && flag3 === false && cup2 === true){
+		var b = document.getElementById("btnm3");
+		b.disabled = false;
+		flag3 = true;
+		} else if(gems < ironCost){
+		var b = document.getElementById("btnm3");
+		b.disabled = true;
+		flag3 = false
+		}
+	if (gems >= silverCost && flag4 === false && cup3 === true){
+		var b = document.getElementById("btnm4");
+		b.disabled = false;
+		flag4 = true;
+		} else if(gems < silverCost){
+		var b = document.getElementById("btnm4");
+		b.disabled = true;
+		flag4 = false
+		}
+	if (gems >= goldCost && flag5 === false && cup4 === true){
+		var b = document.getElementById("btnm5");
+		b.disabled = false;
+		flag5 = true;
+		} else if(gems < goldCost){
+		var b = document.getElementById("btnm5");
+		b.disabled = true;
+		flag5 = false
+		}
+	if (gems >= platinumCost && flag6 === false && cup5 === true){
+		var b = document.getElementById("btnm6");
+		b.disabled = false;
+		flag6 = true;
+		} else if(gems < platinumCost){
+		var b = document.getElementById("btnm6");
+		b.disabled = true;
+		flag6 = false
+		}
+	if (gems >= diamondCost && flag7 === false && cup6 === true){
+		var b = document.getElementById("btnm7");
+		b.disabled = false;
+		flag7 = true;
+		} else if(gems < diamondCost){
+		var b = document.getElementById("btnm7");
+		b.disabled = true;
+		flag7 = false
+		}
+	if (gems >= emeraldCost && flag8 === false && cup7 === true){
+		var b = document.getElementById("btnm8");
+		b.disabled = false;
+		flag8 = true;
+		} else if(gems < emeraldCost){
+		var b = document.getElementById("btnm8");
+		b.disabled = true;
+		flag8 = false
+		}
+	if (gems >= amethystCost && flag9 === false && cup8 === true){
+		var b = document.getElementById("btnm9");
+		b.disabled = false;
+		flag9 = true;
+		} else if(gems < amethystCost){
+		var b = document.getElementById("btnm9");
+		b.disabled = true;
+		flag9 = false
+		}
+	if (gems >= mithrilCost && flag10 === false && cup9 === true){
+		var b = document.getElementById("btnm10");
+		b.disabled = false;
+		flag10 = true;
+		} else if(gems < mithrilCost){
+		var b = document.getElementById("btnm10");
+		b.disabled = true;
+		flag10 = false
+		}
+	if (gems >= titaniumCost && flag11 === false && cup10 === true){
+		var b = document.getElementById("btnm11");
+		b.disabled = false;
+		flag11 = true;
+		} else if(gems < titaniumCost){
+		var b = document.getElementById("btnm11");
+		b.disabled = true;
+		flag11 = false
+		}
+	if (gems >= awesomiumCost && flag12 === false && cup11 === true){
+		var b = document.getElementById("btnm12");
+		b.disabled = false;
+		flag12 = true;
+		} else if(gems < awesomiumCost){
+		var b = document.getElementById("btnm12");
+		b.disabled = true;
+		flag12 = false
+		}
+	if (gems >= 100 && cup1 === false && totalRegMineCount >= 1){
+		var b = document.getElementById("btn4")
+		b.disabled = false
+		} else if(gems < 100){
+		var b = document.getElementById("btn4")
+		b.disabled = true
+		}
+	if (gems >= 500 && cup2 === false && totalRegMineCount >= 1 && cup1){
+		var b = document.getElementById("btn5")
+		b.disabled = false
+		} else if(gems < 500){
+		var b = document.getElementById("btn5")
+		b.disabled = true
+		}
+	if (gems >= 1000 && cup3 === false && totalRegMineCount >= 1 && cup2){
+		var b = document.getElementById("btn6")
+		b.disabled = false
+		} else if(gems < 1000){
+		var b = document.getElementById("btn6")
+		b.disabled = true
+		}
+	if (gems >= 5000 && cup4 === false && totalRegMineCount >= 1 && cup3){
+		var b = document.getElementById("btn7")
+		b.disabled = false
+		} else if(gems < 5000){
+		var b = document.getElementById("btn7")
+		b.disabled = true
+		}
+	if (gems >= 10000 && cup5 === false && totalRegMineCount >= 1 && cup4){
+		var b = document.getElementById("btn8")
+		b.disabled = false
+		} else if(gems < 10000){
+		var b = document.getElementById("btn8")
+		b.disabled = true
+		}
+	if (gems >= 50000 && cup6 === false && totalRegMineCount >= 1 && cup5){
+		var b = document.getElementById("btn9")
+		b.disabled = false
+		} else if(gems < 50000){
+		var b = document.getElementById("btn9")
+		b.disabled = true
+		}
+	if (gems >= 100000 && cup7 === false && totalRegMineCount >= 1 && cup6){
+		var b = document.getElementById("btn10")
+		b.disabled = false
+		} else if(gems < 100000){
+		var b = document.getElementById("btn10")
+		b.disabled = true
+		}
+	if (gems >= 500000 && cup8 === false && totalRegMineCount >= 1 && cup7){
+		var b = document.getElementById("btn11")
+		b.disabled = false
+		} else if(gems < 500000){
+		var b = document.getElementById("btn11")
+		b.disabled = true
+		}
+	if (gems >= 1000000 && cup9 === false && totalRegMineCount >= 1 && cup8){
+		var b = document.getElementById("btn12")
+		b.disabled = false
+		} else if(gems < 1000000){
+		var b = document.getElementById("btn12")
+		b.disabled = true
+		}
+	if (gems >= 5000000 && cup10 === false && totalRegMineCount >= 1 && cup9){
+		var b = document.getElementById("btn13")
+		b.disabled = false
+		} else if(gems < 5000000){
+		var b = document.getElementById("btn13")
+		b.disabled = true
+		}
+	if (gems >= 100000000 && cup11 === false && totalRegMineCount >= 1 && cup10){
+		var b = document.getElementById("btn14")
+		b.disabled = false
+		} else if(gems < 10000000){
+		var b = document.getElementById("btn14")
+		b.disabled = true
+		}
+	} 		
+
+function setGPS(){
+	checkBuy()
+	totalCopperGPS = copperGPS * copperCount
+	totalBronzeGPS = bronzeGPS * bronzeCount
+	totalIronGPS = ironGPS * ironCount
+	totalSilverGPS = silverGPS * silverCount
+	totalGoldGPS = goldGPS * goldCount
+	totalPlatinumGPS = platinumGPS * platinumCount
+	totalDiamondGPS = diamondGPS * diamondCount
+	totalEmeraldGPS = emeraldGPS * emeraldCount
+	totalAmethystGPS = amethystGPS * amethystCount
+	totalMithrilGPS = mithrilGPS * mithrilCount
+	totalTitaniumGPS = titaniumGPS * titaniumCount
+	totalRegMineCount = copperCount + bronzeCount + ironCount + silverCount + goldCount + platinumCount + diamondCount + emeraldCount + amethystCount + mithrilCount + titaniumCount 
+	totalAwesomiumGPS = awesomiumGPS * (awesomiumCount + totalRegMineCount)
+	gps = totalCopperGPS + totalBronzeGPS + totalIronGPS + totalSilverGPS + totalGoldGPS + totalPlatinumGPS + totalDiamondGPS + totalEmeraldGPS + totalAmethystGPS + totalMithrilGPS + totalTitaniumGPS + totalAwesomiumGPS
+	
+
+	}
+
+function updateGPS(){
+	setGPS()
+	gems +=  gps * 0.1;
+	document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!";
+	}
+
+function myFunction(){
+	setGPS()
+	gems += clickCount
+	document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+	}
+function purchaseMine1(){
+	setGPS()
+	if (gems >= copperCost){
+		gems -= copperCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		copperCount += 1
+		copperCost *= 2
+		document.getElementById("btnm1").innerHTML = "Copper Mines:"+copperCount+" Cost:"+copperCost.toFixed(0)+" GPS:"+copperGPS.toFixed(1)
+		setGPS()
+		if (gems < copperCost){
+			var b = document.getElementById("btnm1");
+			b.disabled = true
+			flag1 = false	
+			}
+		}
+
+	}
+function purchaseMine2(){
+	setGPS()
+	if (gems >= bronzeCost){
+		gems -= bronzeCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		bronzeCount += 1
+		bronzeCost *= 2
+		document.getElementById("btnm2").innerHTML = "Bronze Mines:"+bronzeCount+" Cost:"+bronzeCost.toFixed(0)+" GPS:"+bronzeGPS.toFixed(1)
+		setGPS()
+		if (gems < bronzeCost){
+			var b = document.getElementById("btnm2");
+			b.disabled = true
+			flag2 = false	
+			}
+		}
+
+	}
+function purchaseMine3(){
+	setGPS()
+	if (gems >= ironCost){
+		gems -= ironCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		ironCount += 1
+		ironCost *= 2
+		document.getElementById("btnm3").innerHTML = "Iron Mines:"+ironCount+" Cost:"+ironCost.toFixed(0)+" GPS:"+ironGPS.toFixed(1)
+		setGPS()
+		if (gems < ironCost){
+			var b = document.getElementById("btnm3");
+			b.disabled = true
+			flag3 = false	
+			}
+		}
+
+	}
+function purchaseMine4(){
+	setGPS()
+	if (gems >= silverCost){
+		gems -= silverCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		silverCount += 1
+		silverCost *= 2
+		document.getElementById("btnm4").innerHTML = "Silver Mines:"+silverCount+" Cost:"+silverCost.toFixed(0)+" GPS:"+silverGPS.toFixed(1)
+		setGPS()
+		if (gems < silverCost){
+			var b = document.getElementById("btnm4");
+			b.disabled = true
+			flag4 = false	
+			}
+		}
+
+	}
+function purchaseMine5(){
+	setGPS()
+	if (gems >= goldCost){
+		gems -= goldCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		goldCount += 1
+		goldCost *= 2
+		document.getElementById("btnm5").innerHTML = "Gold Mines:"+goldCount+" Cost:"+goldCost.toFixed(0)+" GPS:"+goldGPS.toFixed(1)
+		setGPS()
+		if (gems < goldCost){
+			var b = document.getElementById("btnm5");
+			b.disabled = true
+			flag5 = false	
+			}
+		}
+
+	}
+function purchaseMine6(){
+	setGPS()
+	if (gems >= platinumCost){
+		gems -= platinumCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		platinumCount += 1
+		platinumCost *= 2
+		document.getElementById("btnm6").innerHTML = "Platinum Mines:"+platinumCount+" Cost:"+platinumCost.toFixed(0)+" GPS:"+platinumGPS.toFixed(1)
+		setGPS()
+		if (gems < platinumCost){
+			var b = document.getElementById("btnm6");
+			b.disabled = true
+			flag6 = false
+			}
+		}
+
+	}
+function purchaseMine7(){
+	setGPS()
+	if (gems >= diamondCost){
+		gems -= diamondCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		diamondCount += 1
+		diamondCost *= 2
+		document.getElementById("btnm7").innerHTML = "Diamond Mines:"+diamondCount+" Cost:"+diamondCost.toFixed(0)+" GPS:"+diamondGPS.toFixed(1)
+		setGPS()
+		if (gems < diamondCost){
+			var b = document.getElementById("btnm7");
+			b.disabled = true
+			flag7 = false	
+			}
+		}
+
+	}
+function purchaseMine8(){
+	setGPS()
+	if (gems >= emeraldCost){
+		gems -= emeraldCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		emeraldCount += 1
+		emeraldCost *= 2
+		document.getElementById("btnm8").innerHTML = "Emerald Mines:"+emeraldCount+" Cost:"+emeraldCost.toFixed(0)+" GPS:"+emeraldGPS.toFixed(1)
+		setGPS()
+		if (gems < emeraldCost){
+			var b = document.getElementById("btnm8");
+			b.disabled = true
+			flag8 = false	
+			}
+		}
+
+	}
+function purchaseMine9(){
+	setGPS()
+	if (gems >= amethystCost){
+		gems -= amethystCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		amethystCount += 1
+		amethystCost *= 2
+		document.getElementById("btnm9").innerHTML = "Amethyst Mines:"+amethystCount+" Cost:"+amethystCost.toFixed(0)+" GPS:"+amethystGPS.toFixed(1)
+		setGPS()
+		if (gems < amethystCost){
+			var b = document.getElementById("btnm9");
+			b.disabled = true
+			flag9 = false	
+			}
+		}
+
+	}
+function purchaseMine10(){
+	setGPS()
+	if (gems >= mithrilCost){
+		gems -= mithrilCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		mithrilCount += 1
+		mithrilCost *= 2
+		document.getElementById("btnm10").innerHTML = "Mithril Mines:"+mithrilCount+" Cost:"+mithrilCost.toFixed(0)+" GPS:"+mithrilGPS.toFixed(1)
+		setGPS()
+		if (gems < mithrilCost){
+			var b = document.getElementById("btnm10");
+			b.disabled = true
+			flag10 = false
+			}
+		}
+
+	}
+function purchaseMine11(){
+	setGPS()
+	if (gems >= titaniumCost){
+		gems -= titaniumCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		titaniumCount += 1
+		titaniumCost *= 2
+		document.getElementById("btnm11").innerHTML = "Titanium Mines:"+titaniumCount+" Cost:"+titaniumCost.toFixed(0)+" GPS:"+titaniumGPS.toFixed(1)
+		setGPS()
+		if (gems < titaniumCost){
+			var b = document.getElementById("btnm11");
+			b.disabled = true
+			flag11 = false	
+			}
+		}
+
+	}
+function purchaseMine12(){
+	setGPS()
+	if (gems >= awesomiumCost){
+		gems -= awesomiumCost;
+		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
+		awesomiumCount += 1
+		awesomiumCost *= 2
+		document.getElementById("btnm12").innerHTML = "Awesomium Mines:"+awesomiumCount+" Cost:"+awesomiumCost.toFixed(0)+" GPS:"+awesomiumGPS.toFixed(1)
+		setGPS()
+		if (gems < awesomiumCost){
+			var b = document.getElementById("btnm12");
+			b.disabled = true
+			flag12 = false	
+			}
+		}
+
+	}
+
+function clickerUpgrade1(){
+	setGPS()
+	if (gems >= 100){
+		clickCount *= 2
+		var b = document.getElementById("btn4")
+		b.disabled = true
+		cup1 = true
+		document.getElementById("btn4").innerHTML = "Purchased"
+		gems -= 100
+		document.getElementById("pickaxe").src = "Bronze_Pick.png"
+		}
+	}
+function clickerUpgrade2(){
+	setGPS()
+	if (gems >= 500){
+		clickCount *= 2
+		var b = document.getElementById("btn5")
+		b.disabled = true
+		cup2 = true
+		document.getElementById("btn5").innerHTML = "Purchased"
+		gems -= 500	
+		document.getElementById("pickaxe").src = "Iron_Pick.png"
+		}
+	}
+function clickerUpgrade3(){
+	setGPS()
+	if (gems >= 1000){
+		clickCount *= 2
+		var b = document.getElementById("btn6")
+		b.disabled = true
+		cup3 = true
+		document.getElementById("btn6").innerHTML = "Purchased"
+		gems -= 1000	
+		document.getElementById("pickaxe").src = "Silver_Pick.png"
+		}
+	}
+function clickerUpgrade4(){
+	setGPS()
+	if (gems >= 5000){
+		clickCount *= 2
+		var b = document.getElementById("btn7")
+		b.disabled = true
+		cup4 = true
+		document.getElementById("btn7").innerHTML = "Purchased"
+		gems -= 5000
+		document.getElementById("pickaxe").src = "Gold_Pick.png"
+		}
+	}
+function clickerUpgrade5(){
+	setGPS()
+	if (gems >= 10000){
+		clickCount *= 2
+		var b = document.getElementById("btn8")
+		b.disabled = true
+		cup5 = true
+		document.getElementById("btn8").innerHTML = "Purchased"
+		gems -= 10000
+		document.getElementById("pickaxe").src = "Platinum_Pick.png"
+		}
+	}
+function clickerUpgrade6(){
+	setGPS()
+	if (gems >= 50000){
+		clickCount *= 2
+		var b = document.getElementById("btn9")
+		cup6 = true
+		document.getElementById("btn9").innerHTML = "Purchased"
+		gems -= 50000
+		document.getElementById("pickaxe").src = "Diamond_Pick.png"
+		}
+	}
+function clickerUpgrade7(){
+	setGPS()
+	if (gems >= 100000){
+		clickCount *= 2
+		var b = document.getElementById("btn10")
+		cup7 = true
+		document.getElementById("btn10").innerHTML = "Purchased"
+		gems -= 100000
+		document.getElementById("pickaxe").src = "Emerald_Pick.png"
+		}
+	}
+function clickerUpgrade8(){
+	setGPS()
+	if (gems >= 500000){
+		clickCount *= 2
+		var b = document.getElementById("btn11")
+		cup8 = true
+		document.getElementById("btn11").innerHTML = "Purchased"
+		gems -= 500000
+		document.getElementById("pickaxe").src = "Amethyst.png"
+		
+		}
+	}
+function clickerUpgrade9(){
+	setGPS()
+	if (gems >= 1000000){
+		clickCount *= 2
+		var b = document.getElementById("btn12")
+		cup9 = true
+		document.getElementById("btn12").innerHTML = "Purchased"
+		gems -= 1000000
+		}
+	}
+function clickerUpgrade10(){
+	setGPS()
+	if (gems >= 5000000){
+	 	clickCount *= 2
+		var b = document.getElementById("btn13")
+		cup10 = true
+		document.getElementById("btn13").innerHTML = "Purchased"
+		gems -= 5000000
+		}
+	}
+function clickerUpgrade11(){
+	setGPS()
+	if (gems >= 100000000){
+		clickCount *= 2
+		var b = document.getElementById("btn14")
+		cup11 = true
+		document.getElementById("btn14").innerHTML = "Purchased"
+		gems -= 100000000
+		}
+	}
+setInterval(updateGPS,100)
+</script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align:center">
+<img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" height="300" width="300">
+</div>
+<p id="p1" style="text-align:center;font-family:Verdana;font-size:50px">You have 0 gems!</p>
+
+
+<br>
+<br>
+<button onclick="purchaseMine1()" id="btnm1" margin-right:30px style="position:absolute;left:5px;bottom:280px;border-radius:12px;background-color:#FF8F00;border-color:#571200" disabled>Copper Mines:0 Cost: 10 Gems GPS: 1</button>
+<button onclick="purchaseMine2()" id="btnm2" margin-right:30px style="position:absolute;left:5px;bottom:255px;border-radius:12px;background-color:#CC7434;border-color:#571b00" disabled>Bronze Mines:0 Cost: 50 Gems GPS: 5</button>
+<button onclick="purchaseMine3()" id="btnm3" margin-right:30px style="position:absolute;left:5px;bottom:230px;border-radius:12px;background-color:#AAAAA;border-color:#202020" disabled>Iron Mines:0 Cost: 100 Gems GPS: 10</button>
+<button onclick="purchaseMine4()" id="btnm4" margin-right:30px style="position:absolute;left:5px;bottom:205px;border-radius:12px;background-color:#DBDBDB;border-color:#474747" disabled>Silver Mines:0 Cost: 500 Gems GPS: 50</button>
+<button onclick="purchaseMine5()" id="btnm5" margin-right:30px style="position:absolute;left:5px;bottom:180px;border-radius:12px;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Mines:0 Cost: 1000 Gems GPS: 100</button>
+<button onclick="purchaseMine6()" id="btnm6" margin-right:30px style="position:absolute;left:5px;bottom:155px;border-radius:12px;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Mines:0 Cost: 5000 Gems GPS: 500</button>
+<button onclick="purchaseMine7()" id="btnm7" margin-right:30px style="position:absolute;left:5px;bottom:130px;border-radius:12px;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Mines:0 Cost: 10000 Gems GPS: 1000</button>
+<button onclick="purchaseMine8()" id="btnm8" margin-right:30px style="position:absolute;left:5px;bottom:105px;border-radius:12px;background-color:#10F975;border-color:#005C51" disabled>Emerald Mines:0 Cost: 50000 Gems GPS: 5000</button>
+<button onclick="purchaseMine9()" id="btnm9" margin-right:30px style="position:absolute;left:5px;bottom:80px;border-radius:12px;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Mines:0 Cost: 100000 Gems GPS: 10000</button>
+<button onclick="purchaseMine10()" id="btnm10" margin-right:30px style="position:absolute;left:5px;bottom:55px;border-radius:12px" disabled>Mithril Mines:0 Cost: 500000 Gems GPS: 50000</button>
+<button onclick="purchaseMine11()" id="btnm11" margin-right:30px style="position:absolute;left:5px;bottom:30px;border-radius:12px" disabled>Titanium Mines:0 Cost: 1000000 Gems GPS: 100000</button>
+<button onclick="purchaseMine12()" id="btnm12" margin-right:30px style="position:absolute;left:5px;bottom:5px;border-radius:12px" disabled>Awesomium Mines:0 Cost: 10000000 Gems GPS: 100000</button>
+<p style="position:absolute;right:25px;bottom:0px">Note: Awesomium GPS is multiplied by your total mine count</p>
+<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="position:absolute;right:5px;top:5px;border-radius:12px;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100 Gems</button>
+<button onclick="clickerUpgrade2()" id="btn5" margin-right:30px style="position:absolute;right:5px;top:30px;border-radius:12px;background-color:#AAAAA;border-color:#202020" disabled>Iron Upgrade: 500 Gems</button>
+<button onclick="clickerUpgrade3()" id="btn6" margin-right:30px style="position:absolute;right:5px;top:55px;border-radius:12px;background-color:#DBDBDB;border-color:#474747" disabled>Silver Upgrade: 1000 Gems</button>
+<button onclick="clickerUpgrade4()" id="btn7" margin-right:30px style="position:absolute;right:5px;top:80px;border-radius:12px;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Upgrade: 5000 Gems</button>
+<button onclick="clickerUpgrade5()" id="btn8" margin-right:30px style="position:absolute;right:5px;top:105px;border-radius:12px;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Upgrade: 10000 Gems</button>
+<button onclick="clickerUpgrade6()" id="btn9" margin-right:30px style="position:absolute;right:5px;top:130px;border-radius:12px;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Upgrade: 50000 Gems</button>
+<button onclick="clickerUpgrade7()" id="btn10" margin-right:30px style="position:absolute;right:5px;top:155px;border-radius:12px;background-color:#10F975;border-color:#005C51" disabled>Emerald Upgrade: 100000 Gems</button>
+<button onclick="clickerUpgrade8()" id="btn11" margin-right:30px style="position:absolute;right:5px;top:180px;border-radius:12px;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Upgrade: 500000 Gems</button>
+<button onclick="clickerUpgrade9()" id="btn12" margin-right:30px style="position:absolute;right:5px;top:205px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Mithril Upgrade: 1000000 Gems</button>
+<button onclick="clickerUpgrade10()" id="btn13" margin-right:30px style="position:absolute;right:5px;top:230px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Titanium Upgrade: 5000000 Gems</button>
+<button onclick="clickerUpgrade11()" id="btn14" margin-right:30px style="position:absolute;right:5px;top:255px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Awesomium Upgrade!!!!!: 100000000 Gems</button>
+<br>	
