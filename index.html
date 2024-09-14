@@ -638,6 +638,10 @@
 			gems -= 100000000
 			}
 		}
+  function removBG(){
+    var b = getElementByID("bg")
+    b.remove()
+   }
 	setInterval(updateGPS,100)
 	</script>
 	<meta name="google-site-verification" content="ndGC-WeUKyUhhQe583E8_LabJCG4THauDrtSsCuN8Pk" />
@@ -652,7 +656,7 @@
 	<img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" width="20%" style="user-select:none;-drag:none;-moz-user-select:none;-webkit-user-drag:none;-webkit-user-select:none;-ms-user-select:none">
 	</div>
 	<p id="p1" style="text-align:center;font-family:Verdana;font-size:50px">You have 0 gems!</p>
-	<body style="background-image: url('Background_Copper.png');background-repeat:no-repeat;background-size:100%">
+	<body id="bg" style="background-image: url('Background_Copper.png');background-repeat:no-repeat;background-size:100%">
 	
 	
 	<br>
@@ -681,5 +685,6 @@
 	<button onclick="clickerUpgrade9()" id="btn12" margin-right:30px style="position:absolute;right:5px;top:205px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Mithril Upgrade: 1000000 Gems</button>
 	<button onclick="clickerUpgrade10()" id="btn13" margin-right:30px style="position:absolute;right:5px;top:230px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Titanium Upgrade: 5000000 Gems</button>
 	<button onclick="clickerUpgrade11()" id="btn14" margin-right:30px style="position:absolute;right:5px;top:255px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Awesomium Upgrade!!!!!: 100000000 Gems</button>
+	<button onclick="removBG()" id="btn15" margin-right:30px style="position:absolute;left:5px;top:255px;border-radius:12px;background-color:#e5f2ff;border-color:#571b00" disabled>Remove Background</button>
 	<br>	
 	
