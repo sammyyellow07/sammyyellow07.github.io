@@ -46,6 +46,7 @@
 	mithrilGPS = 50000
 	titaniumGPS = 100000
 	awesomiumGPS = 100000
+	baseAwesomiumGPS = 1000000
 	totalCopperGPS = 0
 	totalBronzeGPS = 0
 	totalIronGPS = 0
@@ -196,77 +197,77 @@
 			b.disabled = true;
 			flag12 = false
 			}
-		if (gems >= 100 && cup1 === false && totalRegMineCount >= 1){
+		if (gems >= 100 && cup1 === false){
 			var b = document.getElementById("btn4")
 			b.disabled = false
 			} else if(gems < 100){
 			var b = document.getElementById("btn4")
 			b.disabled = true
 			}
-		if (gems >= 500 && cup2 === false && totalRegMineCount >= 1 && cup1){
+		if (gems >= 500 && cup2 === false && cup1){
 			var b = document.getElementById("btn5")
 			b.disabled = false
 			} else if(gems < 500){
 			var b = document.getElementById("btn5")
 			b.disabled = true
 			}
-		if (gems >= 1000 && cup3 === false && totalRegMineCount >= 1 && cup2){
+		if (gems >= 1000 && cup3 === false && cup2){
 			var b = document.getElementById("btn6")
 			b.disabled = false
 			} else if(gems < 1000){
 			var b = document.getElementById("btn6")
 			b.disabled = true
 			}
-		if (gems >= 5000 && cup4 === false && totalRegMineCount >= 1 && cup3){
+		if (gems >= 5000 && cup4 === false && cup3){
 			var b = document.getElementById("btn7")
 			b.disabled = false
 			} else if(gems < 5000){
 			var b = document.getElementById("btn7")
 			b.disabled = true
 			}
-		if (gems >= 10000 && cup5 === false && totalRegMineCount >= 1 && cup4){
+		if (gems >= 10000 && cup5 === false && cup4){
 			var b = document.getElementById("btn8")
 			b.disabled = false
 			} else if(gems < 10000){
 			var b = document.getElementById("btn8")
 			b.disabled = true
 			}
-		if (gems >= 50000 && cup6 === false && totalRegMineCount >= 1 && cup5){
+		if (gems >= 50000 && cup6 === false && cup5){
 			var b = document.getElementById("btn9")
 			b.disabled = false
 			} else if(gems < 50000){
 			var b = document.getElementById("btn9")
 			b.disabled = true
 			}
-		if (gems >= 100000 && cup7 === false && totalRegMineCount >= 1 && cup6){
+		if (gems >= 100000 && cup7 === false && cup6){
 			var b = document.getElementById("btn10")
 			b.disabled = false
 			} else if(gems < 100000){
 			var b = document.getElementById("btn10")
 			b.disabled = true
 			}
-		if (gems >= 500000 && cup8 === false && totalRegMineCount >= 1 && cup7){
+		if (gems >= 500000 && cup8 === false && cup7){
 			var b = document.getElementById("btn11")
 			b.disabled = false
 			} else if(gems < 500000){
 			var b = document.getElementById("btn11")
 			b.disabled = true
 			}
-		if (gems >= 1000000 && cup9 === false && totalRegMineCount >= 1 && cup8){
+		if (gems >= 1000000 && cup9 === false && cup8){
 			var b = document.getElementById("btn12")
 			b.disabled = false
 			} else if(gems < 1000000){
 			var b = document.getElementById("btn12")
 			b.disabled = true
 			}
-		if (gems >= 5000000 && cup10 === false && totalRegMineCount >= 1 && cup9){
+		if (gems >= 5000000 && cup10 === false && cup9){
 			var b = document.getElementById("btn13")
 			b.disabled = false
 			} else if(gems < 5000000){
 			var b = document.getElementById("btn13")
 			b.disabled = true
 			}
-		if (gems >= 100000000 && cup11 === false && totalRegMineCount >= 1 && cup10){
+		if (gems >= 100000000 && cup11 === false && cup10){
 			var b = document.getElementById("btn14")
 			b.disabled = false
 			} else if(gems < 10000000){
@@ -289,11 +290,14 @@
 		totalMithrilGPS = mithrilGPS * mithrilCount
 		totalTitaniumGPS = titaniumGPS * titaniumCount
 		totalRegMineCount = copperCount + bronzeCount + ironCount + silverCount + goldCount + platinumCount + diamondCount + emeraldCount + amethystCount + mithrilCount + titaniumCount 
-		if (awesomiumCount > 1){
-			totalAwesomiumGPS = awesomiumGPS * (awesomiumCount + totalRegMineCount)
+		if (awesomiumCount > 0){
+			awesomiumGPS = baseAwesomiumGPS * totalRegMineCount
 			}
+		totalAwesomiumGPS = awesomiumGPS * awesomiumCount
 		if (cup11 === true){
-			clickCount = awesomiumGPS * totalRegMineCount
+			if (awesomiumCount > 0){
+				clickCount = totalAwesomiumGPS * 0.1
+			}
 		}
 		gps = totalCopperGPS + totalBronzeGPS + totalIronGPS + totalSilverGPS + totalGoldGPS + totalPlatinumGPS + totalDiamondGPS + totalEmeraldGPS + totalAmethystGPS + totalMithrilGPS + totalTitaniumGPS + totalAwesomiumGPS
 		
@@ -305,6 +309,7 @@
 		gems +=  gps * 0.1;
 		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!";
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
+		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		}
 	
 	function myFunction(){
@@ -312,6 +317,7 @@
 		gems += clickCount
 		document.getElementById("p1").innerHTML = "You have "+gems.toFixed(1)+" gems!"
 		}
+
 	function purchaseMine1(){
 		setGPS()
 		if (gems >= copperCost){
@@ -650,7 +656,24 @@
 			document.getElementById("pickaxe").src = "thumbnail_Awesomeium Pick.png"
 			}
 		}
+
+	function debugUpgrades(){
+		gems = 106666600
+		clickerUpgrade1()
+		clickerUpgrade2()
+		clickerUpgrade3()
+		clickerUpgrade4()
+		clickerUpgrade5()
+		clickerUpgrade6()
+		clickerUpgrade7()
+		clickerUpgrade8()
+		clickerUpgrade9()
+		clickerUpgrade10()
+		clickerUpgrade11()
+	}
 	setInterval(updateGPS,100)
+
+	document.onkeypress 
 	</script>
 	<br>
 	<br>
@@ -661,37 +684,38 @@
 	<br>
 	<div style="text-align:center">
 	<img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style:margin-left:auto;margin-right:auto;display:block;height:100%>
-	</div>
 	<p id="p1" style="height:3%;font-size:3vw;text-align:center;font-family:Verdana;color:#ffffff">You have 0 gems!</p>
 	<p id="gps" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 0 gems per second!!</p>
+	<p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
+	</div>
+	
 	<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
 	
 	
 	<br>
 	<br>
-	<button onclick="purchaseMine1()" id="btnm1" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:280px;border-radius:12px;background-color:#FF8F00;border-color:#571200" disabled>Copper Mines:0 Cost: 10 Gems GPS: 1</button>
-	<button onclick="purchaseMine2()" id="btnm2" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:255px;border-radius:12px;background-color:#CC7434;border-color:#571b00" disabled>Bronze Mines:0 Cost: 50 Gems GPS: 5</button>
-	<button onclick="purchaseMine3()" id="btnm3" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:230px;border-radius:12px;background-color:#AAAAAA;border-color:#202020" disabled>Iron Mines:0 Cost: 100 Gems GPS: 10</button>
-	<button onclick="purchaseMine4()" id="btnm4" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:205px;border-radius:12px;background-color:#DBDBDB;border-color:#474747" disabled>Silver Mines:0 Cost: 500 Gems GPS: 50</button>
-	<button onclick="purchaseMine5()" id="btnm5" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:180px;border-radius:12px;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Mines:0 Cost: 1000 Gems GPS: 100</button>
-	<button onclick="purchaseMine6()" id="btnm6" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:155px;border-radius:12px;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Mines:0 Cost: 5000 Gems GPS: 500</button>
-	<button onclick="purchaseMine7()" id="btnm7" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:130px;border-radius:12px;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Mines:0 Cost: 10000 Gems GPS: 1000</button>
-	<button onclick="purchaseMine8()" id="btnm8" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:105px;border-radius:12px;background-color:#10F975;border-color:#005C51" disabled>Emerald Mines:0 Cost: 50000 Gems GPS: 5000</button>
-	<button onclick="purchaseMine9()" id="btnm9" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:80px;border-radius:12px;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Mines:0 Cost: 100000 Gems GPS: 10000</button>
-	<button onclick="purchaseMine10()" id="btnm10" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:55px;border-radius:12px;background-color:#8c8c8c;border-color:#5c6c64" disabled>Mithril Mines:0 Cost: 500000 Gems GPS: 50000</button>
-	<button onclick="purchaseMine11()" id="btnm11" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:30px;border-radius:12px;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Mines:0 Cost: 1000000 Gems GPS: 100000</button>
-	<button onclick="purchaseMine12()" id="btnm12" margin-right:30px style="height:3%;font-size:1vw;position:absolute;left:5px;bottom:5px;border-radius:12px;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Mines:0 Cost: 10000000 Gems GPS: 100000</button>
-	<p style="height:3%;font-size:1vw;position:absolute;right:25px;bottom:0px">Note: Awesomium GPS is multiplied by your total mine count</p>
-	<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:5px;border-radius:12px;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100 Gems</button>
-	<button onclick="clickerUpgrade2()" id="btn5" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:30px;border-radius:12px;background-color:#AAAAAA;border-color:#202020" disabled>Iron Upgrade: 500 Gems</button>
-	<button onclick="clickerUpgrade3()" id="btn6" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:55px;border-radius:12px;background-color:#DBDBDB;border-color:#474747" disabled>Silver Upgrade: 1000 Gems</button>
-	<button onclick="clickerUpgrade4()" id="btn7" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:80px;border-radius:12px;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Upgrade: 5000 Gems</button>
-	<button onclick="clickerUpgrade5()" id="btn8" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:105px;border-radius:12px;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Upgrade: 10000 Gems</button>
-	<button onclick="clickerUpgrade6()" id="btn9" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:130px;border-radius:12px;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Upgrade: 50000 Gems</button>
-	<button onclick="clickerUpgrade7()" id="btn10" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:155px;border-radius:12px;background-color:#10F975;border-color:#005C51" disabled>Emerald Upgrade: 100000 Gems</button>
-	<button onclick="clickerUpgrade8()" id="btn11" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:180px;border-radius:12px;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Upgrade: 500000 Gems</button>
-	<button onclick="clickerUpgrade9()" id="btn12" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:205px;border-radius:12px;background-color:#8c8c8c;border-color:#5c6c64" disabled>Mithril Upgrade: 1000000 Gems</button>
-	<button onclick="clickerUpgrade10()" id="btn13" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:230px;border-radius:12px;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Upgrade: 5000000 Gems</button>
-	<button onclick="clickerUpgrade11()" id="btn14" margin-right:30px style="height:3%;font-size:1vw;position:absolute;right:5px;top:255px;border-radius:12px;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Upgrade!!!!!: 100000000 Gems</button>
+	<button onclick="purchaseMine1()" id="btnm1" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:280px;border-radius:12vw;background-color:#FF8F00;border-color:#571200" disabled>Copper Mines:0 Cost: 10 Gems GPS: 1</button>
+	<button onclick="purchaseMine2()" id="btnm2" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:255px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Mines:0 Cost: 50 Gems GPS: 5</button>
+	<button onclick="purchaseMine3()" id="btnm3" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:230px;border-radius:12vw;background-color:#AAAAAA;border-color:#202020" disabled>Iron Mines:0 Cost: 100 Gems GPS: 10</button>
+	<button onclick="purchaseMine4()" id="btnm4" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:205px;border-radius:12vw;background-color:#DBDBDB;border-color:#474747" disabled>Silver Mines:0 Cost: 500 Gems GPS: 50</button>
+	<button onclick="purchaseMine5()" id="btnm5" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:180px;border-radius:12vw;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Mines:0 Cost: 1000 Gems GPS: 100</button>
+	<button onclick="purchaseMine6()" id="btnm6" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:155px;border-radius:12vw;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Mines:0 Cost: 5000 Gems GPS: 500</button>
+	<button onclick="purchaseMine7()" id="btnm7" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:130px;border-radius:12vw;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Mines:0 Cost: 10000 Gems GPS: 1000</button>
+	<button onclick="purchaseMine8()" id="btnm8" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:105px;border-radius:12vw;background-color:#10F975;border-color:#005C51" disabled>Emerald Mines:0 Cost: 50000 Gems GPS: 5000</button>
+	<button onclick="purchaseMine9()" id="btnm9" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:80px;border-radius:12vw;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Mines:0 Cost: 100000 Gems GPS: 10000</button>
+	<button onclick="purchaseMine10()" id="btnm10" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:55px;border-radius:12vw;background-color:#8c8c8c;border-color:#5c6c64" disabled>Mithril Mines:0 Cost: 500000 Gems GPS: 50000</button>
+	<button onclick="purchaseMine11()" id="btnm11" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:30px;border-radius:12vw;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Mines:0 Cost: 1000000 Gems GPS: 100000</button>
+	<button onclick="purchaseMine12()" id="btnm12" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:5px;border-radius:12vw;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Mines:0 Cost: 10000000 Gems GPS: 100000</button>
+	<p style="height:3%;position:absolute;right:25px;bottom:0px">Note: Awesomium GPS is multiplied by your total mine count</p>
+	<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100 Gems</button>
+	<button onclick="clickerUpgrade2()" id="btn5" margin-right:30px style="height:3%;position:absolute;right:5px;top:30px;border-radius:12vw;background-color:#AAAAAA;border-color:#202020" disabled>Iron Upgrade: 500 Gems</button>
+	<button onclick="clickerUpgrade3()" id="btn6" margin-right:30px style="height:3%;position:absolute;right:5px;top:55px;border-radius:12vw;background-color:#DBDBDB;border-color:#474747" disabled>Silver Upgrade: 1000 Gems</button>
+	<button onclick="clickerUpgrade4()" id="btn7" margin-right:30px style="height:3%;position:absolute;right:5px;top:80px;border-radius:12vw;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Upgrade: 5000 Gems</button>
+	<button onclick="clickerUpgrade5()" id="btn8" margin-right:30px style="height:3%;position:absolute;right:5px;top:105px;border-radius:12vw;background-color:#DBDBDB;border-color:#363D46" disabled>Platinum Upgrade: 10000 Gems</button>
+	<button onclick="clickerUpgrade6()" id="btn9" margin-right:30px style="height:3%;position:absolute;right:5px;top:130px;border-radius:12vw;background-color:#E5F2FF;border-color:#213E64" disabled>Diamond Upgrade: 50000 Gems</button>
+	<button onclick="clickerUpgrade7()" id="btn10" margin-right:30px style="height:3%;position:absolute;right:5px;top:155px;border-radius:12vw;background-color:#10F975;border-color:#005C51" disabled>Emerald Upgrade: 100000 Gems</button>
+	<button onclick="clickerUpgrade8()" id="btn11" margin-right:30px style="height:3%;position:absolute;right:5px;top:180px;border-radius:12vw;background-color:#BE00D4;border-color:#211159" disabled>Amethyst Upgrade: 500000 Gems</button>
+	<button onclick="clickerUpgrade9()" id="btn12" margin-right:30px style="height:3%;position:absolute;right:5px;top:205px;border-radius:12vw;background-color:#8c8c8c;border-color:#5c6c64" disabled>Mithril Upgrade: 1000000 Gems</button>
+	<button onclick="clickerUpgrade10()" id="btn13" margin-right:30px style="height:3%;position:absolute;right:5px;top:230px;border-radius:12vw;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Upgrade: 5000000 Gems</button>
+	<button onclick="clickerUpgrade11()" id="btn14" margin-right:30px style="height:3%;position:absolute;right:5px;top:255px;border-radius:12vw;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Upgrade!!!!!: 100000000 Gems</button>
 	<br>	
-	
