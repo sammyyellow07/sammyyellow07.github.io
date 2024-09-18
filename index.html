@@ -6,7 +6,6 @@
 
 <script>
 	gems = 0
-	autoFlag = 0
 	flag1 = false
 	flag2 = false
 	flag3 = false
@@ -21,7 +20,6 @@
 	flag12 = false
 	clickCount = 1
 	gps = 0
-	mineCount = 0
 	copperCount = 0
 	bronzeCount = 0
 	ironCount = 0
@@ -60,7 +58,6 @@
 	totalMithrilGPS = 0
 	totalTitaniumGPS = 0
 	totalAwesomiumGPS = 0
-	totalGPS = 0
 	copperCost = 10
 	bronzeCost = 50
 	ironCost = 100
@@ -73,7 +70,6 @@
 	mithrilCost = 500000
 	titaniumCost = 1000000
 	awesomiumCost = 100000000
-	
 	cup1 = false
 	cup2 = false
 	cup3 = false	
@@ -85,7 +81,7 @@
 	cup9 = false
 	cup10 = false
 	cup11 = false
-	mineTier = "Copper"
+	mineTier = "Copper"	
 	
 	
 	
@@ -660,6 +656,112 @@
 			}
 		}
 
+	function updateBtns(){
+		document.getElementById("btnm1").innerHTML = "Copper Mines:"+copperCount+" Cost:"+copperCost.toFixed(0)+" GPS:"+copperGPS.toFixed(1)
+		document.getElementById("btnm2").innerHTML = "Bronze Mines:"+bronzeCount+" Cost:"+bronzeCost.toFixed(0)+" GPS:"+bronzeGPS.toFixed(1)
+		document.getElementById("btnm3").innerHTML = "Iron Mines:"+ironCount+" Cost:"+ironCost.toFixed(0)+" GPS:"+ironGPS.toFixed(1)
+		document.getElementById("btnm4").innerHTML = "Silver Mines:"+silverCount+" Cost:"+silverCost.toFixed(0)+" GPS:"+silverGPS.toFixed(1)
+		document.getElementById("btnm5").innerHTML = "Gold Mines:"+goldCount+" Cost:"+goldCost.toFixed(0)+" GPS:"+goldGPS.toFixed(1)
+		document.getElementById("btnm6").innerHTML = "Platinum Mines:"+platinumCount+" Cost:"+platinumCost.toFixed(0)+" GPS:"+platinumGPS.toFixed(1)	
+		document.getElementById("btnm7").innerHTML = "Diamond Mines:"+diamondCount+" Cost:"+diamondCost.toFixed(0)+" GPS:"+diamondGPS.toFixed(1)
+		document.getElementById("btnm8").innerHTML = "Emerald Mines:"+emeraldCount+" Cost:"+emeraldCost.toFixed(0)+" GPS:"+emeraldGPS.toFixed(1)
+		document.getElementById("btnm9").innerHTML = "Amethyst Mines:"+amethystCount+" Cost:"+amethystCost.toFixed(0)+" GPS:"+amethystGPS.toFixed(1)
+		document.getElementById("btnm10").innerHTML = "Mithril Mines:"+mithrilCount+" Cost:"+mithrilCost.toFixed(0)+" GPS:"+mithrilGPS.toFixed(1)
+		document.getElementById("btnm11").innerHTML = "Titanium Mines:"+titaniumCount+" Cost:"+titaniumCost.toFixed(0)+" GPS:"+titaniumGPS.toFixed(1)
+		document.getElementById("btnm11").innerHTML = "Awesomium Mines:"+awesomiumCount+" Cost:"+awesomiumCost.toFixed(0)+" GPS:"+awesomiumGPS.toFixed(1)
+		if (cup1){		
+		document.getElementById(btn1).innerHTML = "Purchased"
+		}		
+		if (cup2){		
+		document.getElementById(btn2).innerHTML = "Purchased"
+		}
+		if (cup3){		
+		document.getElementById(btn3).innerHTML = "Purchased"
+		}
+		if (cup4){		
+		document.getElementById(btn4).innerHTML = "Purchased"
+		}
+		if (cup5){		
+		document.getElementById(btn5).innerHTML = "Purchased"
+		}
+		if (cup6){		
+		document.getElementById(btn6).innerHTML = "Purchased"
+		}
+		if (cup7){		
+		document.getElementById(btn7).innerHTML = "Purchased"
+		}
+		if (cup8){		
+		document.getElementById(btn8).innerHTML = "Purchased"
+		}
+		if (cup9){		
+		document.getElementById(btn9).innerHTML = "Purchased"
+		}
+		if (cup10){		
+		document.getElementById(btn10).innerHTML = "Purchased"
+		}
+		if (cup11){		
+		document.getElementById(btn11).innerHTML = "Purchased"
+		}
+	}
+	
+
+	function autoSave(){
+		localStorage.setItem("gems", gems);
+		localStorage.setItem("flag1",flag1)
+		localStorage.setItem("flag2",flag2)
+		localStorage.setItem("flag3",flag3)
+		localStorage.setItem("flag4",flag4)
+		localStorage.setItem("flag5",flag5)
+		localStorage.setItem("flag6",flag6)
+		localStorage.setItem("flag7",flag7)
+		localStorage.setItem("flag8",flag8)
+		localStorage.setItem("flag9",flag9)
+		localStorage.setItem("flag10",flag10)
+		localStorage.setItem("flag11",flag11)
+		localStorage.setItem("flag12",flag12)
+		localStorage.setItem("clickCount",clickCount)
+		localStorage.setItem("gps",gps)
+		localStorage.setItem("copperCount",copperCount)
+		localStorage.setItem("bronzeCount",bronzeCount)
+		localStorage.setItem("ironCount",ironCount)
+		localStorage.setItem("silverCount",silverCount)
+		localStorage.setItem("goldCount",goldCount)
+		localStorage.setItem("platinumCount",platinumCount)
+		localStorage.setItem("diamondCount",diamondCount)
+		localStorage.setItem("emeraldCount",emeraldCount)
+		localStorage.setItem("amethystCount",amethystCount)
+		localStorage.setItem("mithrilCount",mithrilCount)
+		localStorage.setItem("titaniumCount",titaniumCount)
+		localStorage.setItem("awesomiumCount",awesomiumCount)
+		localStorage.setItem("copperCost",copperCost)
+		localStorage.setItem("bronzeCost",bronzeCost)
+		localStorage.setItem("ironCost",ironCost)
+		localStorage.setItem("silverCost",silverCost)
+		localStorage.setItem("goldCost",goldCost)
+		localStorage.setItem("platinumCost",platinumCost)
+		localStorage.setItem("diamondCost",diamondCost)
+		localStorage.setItem("emeraldCost",emeraldCost)
+		localStorage.setItem("amethystCost",amethystCost)
+		localStorage.setItem("mithrilCost",mithrilCost)
+		localStorage.setItem("titaniumCost",titaniumCost)
+		localStorage.setItem("awesomiumCost",awesomiumCost)
+		localStorage.setItem("rotate",rotate)
+		localStorage.setItem("cup1",cup1)
+		localStorage.setItem("cup2",cup2)
+		localStorage.setItem("cup3",cup3)
+		localStorage.setItem("cup4",cup4)
+		localStorage.setItem("cup5",cup5)
+		localStorage.setItem("cup6",cup6)
+		localStorage.setItem("cup7",cup7)
+		localStorage.setItem("cup8",cup8)
+		localStorage.setItem("cup9",cup9)
+		localStorage.setItem("cup10",cup10)
+		localStorage.setItem("cup11",cup11)
+		localStorage.setItem("mineTier",mineTier)
+		checkBuy()
+		console.log("Autosaved")
+	}
+
 	function debugUpgrades(){
 		gems = 106666600
 		clickerUpgrade1()
@@ -675,8 +777,63 @@
 		clickerUpgrade11()
 	}
 	setInterval(updateGPS,100)
+	setInterval(autoSave,15000)
 
-	document.onkeypress 
+	if ("gems" in localStorage){
+		gems = parseInt(localStorage.getItem("gems"));
+		flag1 = localStorage.getItem("flag1")
+		flag2 = localStorage.getItem("flag2")
+		flag3 = localStorage.getItem("flag3")
+		flag4 = localStorage.getItem("flag4")
+		flag5 = localStorage.getItem("flag5")
+		flag6 = localStorage.getItem("flag6")
+		flag7 = localStorage.getItem("flag7")
+		flag8 = localStorage.getItem("flag8")
+		flag9 = localStorage.getItem("flag9")
+		flag10 = localStorage.getItem("flag10")
+		flag11 = localStorage.getItem("flag11")
+		flag12 = localStorage.getItem("flag12")
+		clickCount = parseInt(localStorage.getItem("clickCount"))
+		gps = parseInt(localStorage.getItem("gps"))
+		copperCount = parseInt(localStorage.getItem("copperCount"))
+		bronzeCount= parseInt(localStorage.getItem("bronzeCount"))
+		ironCount = parseInt(localStorage.getItem("ironCount"))
+		silverCount = parseInt(localStorage.getItem("silverCount"))
+		goldCount = parseInt(localStorage.getItem("goldCount"))
+		platinumCount = parseInt(localStorage.getItem("platinumCount"))
+		diamondCount = parseInt(localStorage.getItem("diamondCount"))
+		emeraldCount = parseInt(localStorage.getItem("emeraldCount"))
+		amethystCount = parseInt(localStorage.getItem("amethystCount"))
+		mithrilCount = parseInt(localStorage.getItem("mithrilCount"))
+		titaniumCount = parseInt(localStorage.getItem("titaniumCount"))
+		awesomiumCount = parseInt(localStorage.getItem("awesomiumCount"))
+		copperCost = parseInt(localStorage.getItem("copperCost"))
+		bronzeCost= parseInt(localStorage.getItem("bronzeCost"))
+		ironCost = parseInt(localStorage.getItem("ironCost"))
+		silverCost = parseInt(localStorage.getItem("silverCost"))
+		goldCost = parseInt(localStorage.getItem("goldCost"))
+		platinumCost = parseInt(localStorage.getItem("platinumCost"))
+		diamondCost = parseInt(localStorage.getItem("diamondCost"))
+		emeraldCost = parseInt(localStorage.getItem("emeraldCost"))
+		amethystCost = parseInt(localStorage.getItem("amethystCost"))
+		mithrilCost = parseInt(localStorage.getItem("mithrilCost"))
+		titaniumCost = parseInt(localStorage.getItem("titaniumCost"))
+		awesomiumCost = parseInt(localStorage.getItem("awesomiumCost"))
+		rotate = parseInt(localStorage.getItem("rotate"))
+		cup1 = localStorage.getItem("cup1")
+		cup2 = localStorage.getItem("cup2")
+		cup3 = localStorage.getItem("cup3")
+		cup4 = localStorage.getItem("cup4")
+		cup5 = localStorage.getItem("cup5")
+		cup6 = localStorage.getItem("cup6")
+		cup7 = localStorage.getItem("cup7")
+		cup8 = localStorage.getItem("cup8")
+		cup9 = localStorage.getItem("cup9")
+		cup10 = localStorage.getItem("cup10")
+		cup11 = localStorage.getItem("cup11")
+		mineTier = localStorage.getItem("mineTier")
+	}
+	updateBtns()
 	</script>
 	<br>
 	<br>
