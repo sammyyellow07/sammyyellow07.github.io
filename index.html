@@ -10,6 +10,7 @@
 <br>
 <br>
 <br>
+<button id="ascension" onclick=apotheosis() style="margin-left:auto;margin-right:auto;display:block;font-family:luminari,fantasy;font-size:50px;height:fit-content;width:fit-content;display:none" disabled>Ascend</button>
 <br>
 <div style="text-align:center;margin-top:5%">
 <img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style:margin-left:auto;margin-right:auto;display:block;height:100%>
@@ -387,6 +388,12 @@
 		} else{
 			document.getElementById("btn14").innerHTML = "Awesomium Upgrade: 100000000"
 		}
+		if (cup11 === true && gems >= 100000000){
+			document.getElementById("ascension").style.display = "block"
+			document.getElementById("ascension").disabled = false
+			document.getElementById("ascension").innerHTML = "Ascend for "+Math.round(gems / 10000000000)+" Divine Gems"
+
+			}
 		} 		
 
 	function sleep(milliseconds) {
@@ -781,6 +788,13 @@
 			document.getElementById("pickaxe").src = "Awesomeium_Pick.png"
 			}
 		}
+
+	function apotheosis(){
+		divine_gems = Math.round(gems/10000000000)
+		localStorage.clear()
+		localStorage.setItem("divine_gems",divine_gems)
+		window.open(apotheosis.html)
+	}
 
 	function updateBtns(){
 		document.getElementById("btnm1").innerHTML = "Copper Mines:"+copperCount+" Cost:"+copperCost.toFixed(0)+" GPS:"+copperGPS.toFixed(1)
