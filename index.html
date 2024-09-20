@@ -53,6 +53,7 @@
 <body>
 	<script>
 	gems = 0
+	idleGems = 0
 	flag1 = false
 	flag2 = false
 	flag3 = false
@@ -134,6 +135,15 @@
 	function deleteSave(){
 		localStorage.clear()
 		location.reload()
+	}
+
+	function sleep(milliseconds) {
+	let start = new Date().getTime();
+	for (var i = 0; i < 1e7; i++) {
+		if ((new Date().getTime() - start) > milliseconds){
+			break;
+			}
+		}
 	}
 
 	function checkBuy(){
@@ -731,7 +741,7 @@
 			cup8 = true
 			document.getElementById("btn11").innerHTML = "Purchased"
 			gems -= 500000
-			document.getElementById("pickaxe").src = "Amethyst.png"
+			document.getElementById("pickaxe").src = "Amethyst_Pick.png"
 			
 			}
 		}
@@ -744,7 +754,7 @@
 			cup9 = true
 			document.getElementById("btn12").innerHTML = "Purchased"
 			gems -= 1000000
-			document.getElementById("pickaxe").src = "thumbnail_Mithril.png"
+			document.getElementById("pickaxe").src = "Mithril_Pick.png"
 			}
 		}
 	function clickerUpgrade10(){
@@ -756,7 +766,7 @@
 			cup10 = true
 			document.getElementById("btn13").innerHTML = "Purchased"
 			gems -= 5000000
-			document.getElementById("pickaxe").src = "thumbnail_Titanium Pick.png"
+			document.getElementById("pickaxe").src = "Titanium_Pick.png"
 			}
 		}
 	function clickerUpgrade11(){
@@ -768,7 +778,7 @@
 			cup11 = true
 			document.getElementById("btn14").innerHTML = "Purchased"
 			gems -= 100000000
-			document.getElementById("pickaxe").src = "thumbnail_Awesomeium Pick.png"
+			document.getElementById("pickaxe").src = "Awesomeium_Pick.png"
 			}
 		}
 
@@ -977,8 +987,10 @@
 			if ("lastDate" in localStorage){
 				lastDate = localStorage.getItem("lastDate")
 				lastDate = new Date(lastDate)
-				gems = gems + gps*((newDate-lastDate)/1000)
+				idleGems = parseInt(gps*((newDate-lastDate)/100000))
+				gems = gems + gps*((newDate-lastDate)/100000)
 				updateBtns()
+				
 			}
 			document.getElementById("pickaxe").style.transform = "rotate("+rotate+"deg)"
 			unloaded = false
@@ -1074,5 +1086,9 @@
 		}
 	}
 	load()
-	</script>
+	sleep(2000)
+	window.addEventListener('load',function idleAlert(){
+  		alert("While you were away, you made "+idleGems.toFixed(0)+" gems.\n\nNote: You only get 1% as many gems per second while you are away.\n\nMaybe you can increase that somehow..?")
+	})
+		</script>
 </body>
