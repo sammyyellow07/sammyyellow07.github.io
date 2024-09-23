@@ -133,6 +133,7 @@
 	mineTier = "Copper"
 	unloaded = true	
 	gworble = 0
+	greenMode = false
 	
 	function deleteSave(){
 		localStorage.clear()
@@ -441,6 +442,10 @@
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
 		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		checkBuy()
+		if (Math.floor(Math.random() * 10000) === 12 && greenMode === false){
+			greenMode = true
+			alert("green mode activated")
+		 }
 		}
 	
 	function myFunction(){
