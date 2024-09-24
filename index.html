@@ -19,13 +19,14 @@
 <p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
 </div>
 
-<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+<body id="bg_img" "style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
 
 
 <br>
 <br>
 <button onclick="deleteSave()" margin-right:30px style="height:3%;position:absolute;left:5px;top:5px;border-radius:12vw;background-color:#FF0000;border-color:#000000">Delete Save File</button>
 <button onclick="autoSave()" margin-right:30px style="height:3%;position:absolute;left:5px;top:30px;border-radius:12vw;background-color:#00FF00;border-color:#FFFFFF">Save Your Progress</button>
+<button onclick="greenMode()" margin-right:30px style="height:3%;position:absolute;left:5px;top:55px;border-radius:12vw;background-color:#00AA00;border-color:#005500">Initiate GREEN MODE</button>
 <button onclick="purchaseMine1()" id="btnm1" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:280px;border-radius:12vw;background-color:#FF8F00;border-color:#571200" disabled>Copper Mines:0 Cost: 10 Gems GPS: 1</button>
 <button onclick="purchaseMine2()" id="btnm2" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:255px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Mines:0 Cost: 50 Gems GPS: 5</button>
 <button onclick="purchaseMine3()" id="btnm3" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:230px;border-radius:12vw;background-color:#AAAAAA;border-color:#202020" disabled>Iron Mines:0 Cost: 100 GPS: 10</button>
@@ -149,6 +150,33 @@
 		}
 	}
 
+	function greenMode(){
+		document.getElementByID("bg_img").style.visibility = "hidden"
+		document.body.style.backgroundColor = #00FF00
+		document.getElementByID("btnm1").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm2").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm3").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm4").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm5").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm6").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm7").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm8").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm9").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm10").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm11").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btnm12").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn4").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn5").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn6").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn7").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn8").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn9").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn10").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn11").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn12").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn13").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementByID("btn14").style = "background-color:#00aa00;border-color:#005500"
+		
 	function checkBuy(){
 		if (gems >= copperCost){
 			var b = document.getElementById("btnm1");
@@ -442,10 +470,13 @@
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
 		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		checkBuy()
-		if (Math.floor(Math.random() * 10000) === 12 && greenMode === false){
-			greenMode = true
+		if (Math.floor(Math.random() * 10000) === 12 && greenFlag === false){
+			greenFlag = true
 			alert("green mode activated")
 		 }
+		}
+		if (greenFlag === true){
+			greenMode()
 		}
 	
 	function myFunction(){
