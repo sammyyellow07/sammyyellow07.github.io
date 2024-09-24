@@ -19,7 +19,7 @@
 <p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
 </div>
 
-<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+<body "style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
 
 
 <br>
@@ -133,7 +133,7 @@
 	mineTier = "Copper"
 	unloaded = true	
 	gworble = 0
-	greenMode = false
+	greenFlag = false
 	
 	function deleteSave(){
 		localStorage.clear()
@@ -149,6 +149,32 @@
 		}
 	}
 
+	function greenMode(){
+		document.body.style.backgroundColor = "#00FF00"
+		document.getElementById("btnm1").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm2").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm3").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm4").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm5").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm6").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm7").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm8").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm9").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm10").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm11").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btnm12").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn4").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn5").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn6").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn7").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn8").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn9").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn10").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn11").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn12").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn13").style = "background-color:#00aa00;border-color:#005500"
+		document.getElementById("btn14").style = "background-color:#00aa00;border-color:#005500"
+	}
 	function checkBuy(){
 		if (gems >= copperCost){
 			var b = document.getElementById("btnm1");
@@ -442,10 +468,13 @@
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
 		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		checkBuy()
-		if (Math.floor(Math.random() * 10000) === 12 && greenMode === false){
-			greenMode = true
+		if (Math.floor(Math.random() * 10000) === 12 && greenFlag === false){
+			greenFlag = true
 			alert("green mode activated")
 		 }
+		}
+		if (greenFlag === true){
+			greenMode()
 		}
 	
 	function myFunction(){
