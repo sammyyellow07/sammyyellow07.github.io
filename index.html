@@ -131,9 +131,12 @@
 	cup10 = false
 	cup11 = false
 	mineTier = "Copper"
-	unloaded = true	
+	unloaded = undefined
 	gworble = 0
 	greenMode = false
+	global_multiplier = 1
+	divine_gems = 0
+	new_divine_gems = 0
 	
 	function deleteSave(){
 		localStorage.clear()
@@ -796,10 +799,30 @@
 		}
 
 	function apotheosis(){
-		divine_gems = Math.round(gems/10000000000)
+		new_divine_gems = Math.trunc(gems/10000000000)
+		divine_gems += new_divine_gems
+		global_multiplier = Math.pow(1.03,divine_gems)
 		localStorage.clear()
 		localStorage.setItem("divine_gems",divine_gems)
-		window.open(apotheosis.html)
+		localStorage.setItem("global_multiplier",global_multiplier)
+		location.reload()
+	}
+
+	function globalMultiply(){
+		global_multiplier = parseFloat(localStorage.getItem("global_multiplier"))
+		clickCount *= global_multiplier
+		copperGPS *= global_multiplier
+		bronzeGPS *= global_multiplier
+		ironGPS *= global_multiplier
+		silverGPS *= global_multiplier
+		goldGPS *= global_multiplier
+		platinumGPS *= global_multiplier
+		diamondGPS *= global_multiplier
+		emeraldGPS *= global_multiplier
+		amethystGPS *= global_multiplier
+		mithrilGPS *= global_multiplier
+		titaniumGPS *= global_multiplier
+		awesomiumGPS *= global_multiplier
 	}
 
 	function updateBtns(){
@@ -929,6 +952,8 @@
 		localStorage.setItem("cup11",cup11)
 		localStorage.setItem("mineTier",mineTier)
 		localStorage.setItem("lastDate",lastDate)
+		localStorage.setItem("divine_gems",divine_gems)
+		localStorage.setItem("global_multiplier",global_multiplier)
 		console.log("Autosaved")
 	}
 
@@ -1003,6 +1028,9 @@
 			cup9 = localStorage.getItem("cup9")
 			cup10 = localStorage.getItem("cup10")
 			cup11 = localStorage.getItem("cup11")
+			if (localStorage.getItem("unloaded") != false){
+				localStorage.getItem("unloaded")
+			}
 			mineTier = localStorage.getItem("mineTier")
 			if ("lastDate" in localStorage){
 				lastDate = localStorage.getItem("lastDate")
@@ -1013,7 +1041,12 @@
 				
 			}
 			document.getElementById("pickaxe").style.transform = "rotate("+rotate+"deg)"
+			if(unloaded === undefined){
+				global_multiplier = parseFloat(localStorage.getItem("global_multiplier"))
+				globalMultiply()
+			}
 			unloaded = false
+			localStorage.setItem("unloaded",unloaded)
 			cup1 = (cup1 === "true")
 			cup2 = (cup2 === "true")
 			cup3 = (cup3 === "true")
@@ -1037,6 +1070,7 @@
 			flag10 = (flag10 === "true")
 			flag11 = (flag11 === "true")
 			flag12 = (flag12 === "true")
+			divine_gems = parseInt(localStorage.getItem("divine_gems"))
 		if (cup1 === true){		
 			document.getElementById("btn4").innerHTML = "Purchased"
 			document.getElementById("pickaxe").src = "Bronze_Pick.png"
