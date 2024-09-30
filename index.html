@@ -19,7 +19,7 @@
 <p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
 </div>
 
-<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+<body id="bg_img" style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
 
 
 <br>
@@ -39,7 +39,7 @@
 <button onclick="purchaseMine11()" id="btnm11" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:30px;border-radius:12vw;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Mines:0 Cost: 1000000 GPS: 100000</button>
 <button onclick="purchaseMine12()" id="btnm12" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:5px;border-radius:12vw;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Mines:0 Cost: 10000000 GPS: 100000</button>
 <p style="height:3%;position:absolute;right:25px;bottom:0px">Note: Awesomium GPS is multiplied by your total mine count</p>
-<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;display:inline-block;text-align:center;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100</button>
+<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100</button>
 <button onclick="clickerUpgrade2()" id="btn5" margin-right:30px style="height:3%;position:absolute;right:5px;top:30px;border-radius:12vw;background-color:#AAAAAA;border-color:#202020" disabled>Iron Upgrade: 500</button>
 <button onclick="clickerUpgrade3()" id="btn6" margin-right:30px style="height:3%;position:absolute;right:5px;top:55px;border-radius:12vw;background-color:#DBDBDB;border-color:#474747" disabled>Silver Upgrade: 1000</button>
 <button onclick="clickerUpgrade4()" id="btn7" margin-right:30px style="height:3%;position:absolute;right:5px;top:80px;border-radius:12vw;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Upgrade: 5000</button>
@@ -133,7 +133,7 @@
 	mineTier = "Copper"
 	unloaded = true	
 	gworble = 0
-	greenMode = false
+	greenFlag = false
 	
 	function deleteSave(){
 		localStorage.clear()
@@ -149,6 +149,33 @@
 		}
 	}
 
+	function greenMode(){
+		document.body.style.backgroundImage='none';
+		document.body.style.backgroundColor = "#00FF00"
+		document.getElementById("btnm1").style="height:3%;position:absolute;left:5px;bottom:280px;border-radius:12vw;background-color:#FFFF00;border-color:#005500"
+		document.getElementById("btnm2").style="height:3%;position:absolute;left:5px;bottom:255px;border-radius:12vw;background-color:#CCFF34;border-color:#005500"
+		document.getElementById("btnm3").style="height:3%;position:absolute;left:5px;bottom:230px;border-radius:12vw;background-color:#AAFFAA;border-color:#005500"
+		document.getElementById("btnm4").style="height:3%;position:absolute;left:5px;bottom:205px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
+		document.getElementById("btnm5").style="height:3%;position:absolute;left:5px;bottom:180px;border-radius:12vw;background-color:#ffFF00;border-color:#005500"
+		document.getElementById("btnm6").style="height:3%;position:absolute;left:5px;bottom:155px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
+		document.getElementById("btnm7").style="height:3%;position:absolute;left:5px;bottom:130px;border-radius:12vw;background-color:#E5FFFF;border-color:#005500"
+		document.getElementById("btnm8").style="height:3%;position:absolute;left:5px;bottom:105px;border-radius:12vw;background-color:#10FF75;border-color:#005500"
+		document.getElementById("btnm9").style="height:3%;position:absolute;left:5px;bottom:80px;border-radius:12vw;background-color:#BEFFD4;border-color:#005500" 
+		document.getElementById("btnm10").style="height:3%;position:absolute;left:5px;bottom:55px;border-radius:12vw;background-color:#8cFF8c;border-color:#005500"
+		document.getElementById("btnm11").style="height:3%;position:absolute;left:5px;bottom:30px;border-radius:12vw;background-color:#b4FFb4;border-color:#005500"
+		document.getElementById("btnm12").style="height:3%;position:absolute;left:5px;bottom:5px;border-radius:12vw;background-color:#fcFF3c;border-color:#005500" 
+		document.getElementById("btn4").style="height:3%;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CCFF34;border-color:#005500"
+		document.getElementById("btn5").style="height:3%;position:absolute;right:5px;top:30px;border-radius:12vw;background-color:#AAFFAA;border-color:#005500"
+		document.getElementById("btn6").style="height:3%;position:absolute;right:5px;top:55px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
+		document.getElementById("btn7").style="height:3%;position:absolute;right:5px;top:80px;border-radius:12vw;background-color:#ffFF00;border-color:#005500"
+		document.getElementById("btn8").style="height:3%;position:absolute;right:5px;top:105px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
+		document.getElementById("btn9").style="height:3%;position:absolute;right:5px;top:130px;border-radius:12vw;background-color:#E5FFFF;border-color:#005500"
+		document.getElementById("btn10").style="height:3%;position:absolute;right:5px;top:155px;border-radius:12vw;background-color:#10FF75;border-color:#005500"
+		document.getElementById("btn11").style="height:3%;position:absolute;right:5px;top:180px;border-radius:12vw;background-color:#BEFFD4;border-color:#005500"
+		document.getElementById("btn12").style="height:3%;position:absolute;right:5px;top:205px;border-radius:12vw;background-color:#8cFF8c;border-color:#005500"
+		document.getElementById("btn13").style="height:3%;position:absolute;right:5px;top:230px;border-radius:12vw;background-color:#b4FFb4;border-color:#005500"
+		document.getElementById("btn14").style="height:3%;position:absolute;right:5px;top:255px;border-radius:12vw;background-color:#fcFF3c;border-color:#005500"
+	}
 	function checkBuy(){
 		if (gems >= copperCost){
 			var b = document.getElementById("btnm1");
@@ -442,10 +469,13 @@
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
 		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		checkBuy()
-		if (Math.floor(Math.random() * 10000) === 12 && greenMode === false){
-			greenMode = true
+		if (Math.floor(Math.random() * 10000) === 12 && greenFlag === false){
+			greenFlag = true
 			alert("green mode activated")
 		 }
+		}
+		if (greenFlag === true){
+			greenMode()
 		}
 	
 	function myFunction(){
