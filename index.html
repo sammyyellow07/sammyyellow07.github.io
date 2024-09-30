@@ -12,14 +12,14 @@
 <br>
 <button id="ascension" onclick=apotheosis() style="margin-left:auto;margin-right:auto;display:block;font-family:luminari,fantasy;font-size:50px;height:fit-content;width:fit-content;display:none" disabled>Ascend</button>
 <br>
-<div style="text-align:center;margin-top:5%">
-<img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style:margin-left:auto;margin-right:auto;display:block;height:100%>
-<p id="p1" style="height:3%;font-size:3vw;text-align:center;font-family:Verdana;color:#ffffff">You have 0 gems!</p>
-<p id="gps" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 0 gems per second!!</p>
-<p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
+<div unselectable="on" style="text-align:center">
+<img unselectable="on"src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style="margin-left:auto;margin-right:auto;display:block;height:25%;user-select:none;">
+<p unselectable="on" id="p1" style="height:3%;font-size:3vw;text-align:center;font-family:Verdana;color:#ffffff">You have 0 gems!</p>
+<p unselectable="on" id="gps" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 0 gems per second!!</p>
+<p unselectable="on" id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
 </div>
 
-<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+<body unselectable="on" style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
 
 
 <br>
@@ -134,14 +134,20 @@
 	unloaded = undefined
 	gworble = 0
 	greenMode = false
-	global_multiplier = 1
-	divine_gems = 0
+	globalMultiplier = 1
+	divineGems = 0
 	new_divine_gems = 0
 	
 	function deleteSave(){
-		localStorage.clear()
-		location.reload()
-	}
+		if (confirm("It'll be gone forever.") == true){
+			if (confirm("You can't get it back.") == true){
+				if (confirm("Last chance!") == true){
+					localStorage.clear()
+					location.reload()
+					}
+				}
+			}
+		}
 
 	function sleep(milliseconds) {
 	let start = new Date().getTime();
@@ -799,30 +805,33 @@
 		}
 
 	function apotheosis(){
+		divineGems = parseInt(localStorage.getItem("divineGems"))
 		new_divine_gems = Math.trunc(gems/10000000000)
-		divine_gems += new_divine_gems
-		global_multiplier = Math.pow(1.03,divine_gems)
+		divineGems += new_divine_gems
+		globalMultiplier = Math.pow(1.03,divineGems)
 		localStorage.clear()
-		localStorage.setItem("divine_gems",divine_gems)
-		localStorage.setItem("global_multiplier",global_multiplier)
+		localStorage.setItem("divineGems",divineGems)
+		localStorage.setItem("globalMultiplier",globalMultiplier)
+		sleep(500)
 		location.reload()
+		load()
 	}
 
 	function globalMultiply(){
-		global_multiplier = parseFloat(localStorage.getItem("global_multiplier"))
-		clickCount *= global_multiplier
-		copperGPS *= global_multiplier
-		bronzeGPS *= global_multiplier
-		ironGPS *= global_multiplier
-		silverGPS *= global_multiplier
-		goldGPS *= global_multiplier
-		platinumGPS *= global_multiplier
-		diamondGPS *= global_multiplier
-		emeraldGPS *= global_multiplier
-		amethystGPS *= global_multiplier
-		mithrilGPS *= global_multiplier
-		titaniumGPS *= global_multiplier
-		awesomiumGPS *= global_multiplier
+		globalMultiplier = parseFloat(localStorage.getItem("globalMultiplier"))
+		clickCount *= globalMultiplier
+		copperGPS *= globalMultiplier
+		bronzeGPS *= globalMultiplier
+		ironGPS *= globalMultiplier
+		silverGPS *= globalMultiplier
+		goldGPS *= globalMultiplier
+		platinumGPS *= globalMultiplier
+		diamondGPS *= globalMultiplier
+		emeraldGPS *= globalMultiplier
+		amethystGPS *= globalMultiplier
+		mithrilGPS *= globalMultiplier
+		titaniumGPS *= globalMultiplier
+		awesomiumGPS *= globalMultiplier
 	}
 
 	function updateBtns(){
@@ -952,8 +961,6 @@
 		localStorage.setItem("cup11",cup11)
 		localStorage.setItem("mineTier",mineTier)
 		localStorage.setItem("lastDate",lastDate)
-		localStorage.setItem("divine_gems",divine_gems)
-		localStorage.setItem("global_multiplier",global_multiplier)
 		console.log("Autosaved")
 	}
 
@@ -1028,6 +1035,8 @@
 			cup9 = localStorage.getItem("cup9")
 			cup10 = localStorage.getItem("cup10")
 			cup11 = localStorage.getItem("cup11")
+			divineGems = parseInt(localStorage.getItem("divineGems"))
+			globalMultiplier = localStorage.getItem("globalMultiplier")
 			if (localStorage.getItem("unloaded") != false){
 				localStorage.getItem("unloaded")
 			}
@@ -1042,7 +1051,7 @@
 			}
 			document.getElementById("pickaxe").style.transform = "rotate("+rotate+"deg)"
 			if(unloaded === undefined){
-				global_multiplier = parseFloat(localStorage.getItem("global_multiplier"))
+				globalMultiplier = parseFloat(localStorage.getItem("globalMultiplier"))
 				globalMultiply()
 			}
 			unloaded = false
@@ -1070,7 +1079,7 @@
 			flag10 = (flag10 === "true")
 			flag11 = (flag11 === "true")
 			flag12 = (flag12 === "true")
-			divine_gems = parseInt(localStorage.getItem("divine_gems"))
+			divineGems = parseInt(localStorage.getItem("divineGems"))
 		if (cup1 === true){		
 			document.getElementById("btn4").innerHTML = "Purchased"
 			document.getElementById("pickaxe").src = "Bronze_Pick.png"
