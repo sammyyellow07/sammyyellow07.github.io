@@ -12,13 +12,16 @@
 <br>
 <button id="ascension" onclick=apotheosis() style="margin-left:auto;margin-right:auto;display:block;font-family:luminari,fantasy;font-size:50px;height:fit-content;width:fit-content;display:none" disabled>Ascend</button>
 <br>
-<div unselectable="on" style="text-align:center">
-<img unselectable="on"src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style="margin-left:auto;margin-right:auto;display:block;height:25%;user-select:none;">
-<p unselectable="on" id="p1" style="height:3%;font-size:3vw;text-align:center;font-family:Verdana;color:#ffffff">You have 0 gems!</p>
-<p unselectable="on" id="gps" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 0 gems per second!!</p>
-<p unselectable="on" id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
+<div style="text-align:center;margin-top:5%">
+<img src="Copper_Pick.png" onclick="myFunction()" id="pickaxe" style:margin-left:auto;margin-right:auto;display:block;height:100%>
+<p id="p1" style="height:3%;font-size:3vw;text-align:center;font-family:Verdana;color:#ffffff">You have 0 gems!</p>
+<p id="gps" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 0 gems per second!!</p>
+<p id="clickcount" style="height:3%;font-size:2vw;text-align:center;font-family:Verdana;color:#ffffff">You are getting 1 gem per click!!</p>
 </div>
-<body unselectable="on" id="bg_img" style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+
+<body style="background-image:url('Background_Copper.png');background-repeat:no-repeat;background-size:100%;background-size:cover">
+
+
 <br>
 <br>
 <button onclick="deleteSave()" margin-right:30px style="height:3%;position:absolute;left:5px;top:5px;border-radius:12vw;background-color:#FF0000;border-color:#000000">Delete Save File</button>
@@ -36,7 +39,7 @@
 <button onclick="purchaseMine11()" id="btnm11" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:30px;border-radius:12vw;background-color:#b4b4b4;border-color:#444444" disabled>Titanium Mines:0 Cost: 1000000 GPS: 100000</button>
 <button onclick="purchaseMine12()" id="btnm12" margin-right:30px style="height:3%;position:absolute;left:5px;bottom:5px;border-radius:12vw;background-color:#fc3c3c;border-color:#b4047c" disabled>Awesomium Mines:0 Cost: 10000000 GPS: 100000</button>
 <p style="height:3%;position:absolute;right:25px;bottom:0px">Note: Awesomium GPS is multiplied by your total mine count</p>
-<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100</button>
+<button onclick="clickerUpgrade1()" id="btn4" margin-right:30px style="height:3%;display:inline-block;text-align:center;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CC7434;border-color:#571b00" disabled>Bronze Upgrade: 100</button>
 <button onclick="clickerUpgrade2()" id="btn5" margin-right:30px style="height:3%;position:absolute;right:5px;top:30px;border-radius:12vw;background-color:#AAAAAA;border-color:#202020" disabled>Iron Upgrade: 500</button>
 <button onclick="clickerUpgrade3()" id="btn6" margin-right:30px style="height:3%;position:absolute;right:5px;top:55px;border-radius:12vw;background-color:#DBDBDB;border-color:#474747" disabled>Silver Upgrade: 1000</button>
 <button onclick="clickerUpgrade4()" id="btn7" margin-right:30px style="height:3%;position:absolute;right:5px;top:80px;border-radius:12vw;background-color:#ffe100;border-color:#6a2a00" disabled>Gold Upgrade: 5000</button>
@@ -128,23 +131,14 @@
 	cup10 = false
 	cup11 = false
 	mineTier = "Copper"
-	unloaded = undefined
+	unloaded = true	
 	gworble = 0
-	greenFlag = false
-	globalMultiplier = 1
-	divineGems = 0
-	new_divine_gems = 0
+	greenMode = false
 	
 	function deleteSave(){
-		if (confirm("It'll be gone forever.") == true){
-			if (confirm("You can't get it back.") == true){
-				if (confirm("Last chance!") == true){
-					localStorage.clear()
-					location.reload()
-					}
-				}
-			}
-		}
+		localStorage.clear()
+		location.reload()
+	}
 
 	function sleep(milliseconds) {
 	let start = new Date().getTime();
@@ -155,33 +149,6 @@
 		}
 	}
 
-	function greenMode(){
-		document.body.style.backgroundImage='none';
-		document.body.style.backgroundColor = "#00FF00"
-		document.getElementById("btnm1").style="height:3%;position:absolute;left:5px;bottom:280px;border-radius:12vw;background-color:#FFFF00;border-color:#005500"
-		document.getElementById("btnm2").style="height:3%;position:absolute;left:5px;bottom:255px;border-radius:12vw;background-color:#CCFF34;border-color:#005500"
-		document.getElementById("btnm3").style="height:3%;position:absolute;left:5px;bottom:230px;border-radius:12vw;background-color:#AAFFAA;border-color:#005500"
-		document.getElementById("btnm4").style="height:3%;position:absolute;left:5px;bottom:205px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
-		document.getElementById("btnm5").style="height:3%;position:absolute;left:5px;bottom:180px;border-radius:12vw;background-color:#ffFF00;border-color:#005500"
-		document.getElementById("btnm6").style="height:3%;position:absolute;left:5px;bottom:155px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
-		document.getElementById("btnm7").style="height:3%;position:absolute;left:5px;bottom:130px;border-radius:12vw;background-color:#E5FFFF;border-color:#005500"
-		document.getElementById("btnm8").style="height:3%;position:absolute;left:5px;bottom:105px;border-radius:12vw;background-color:#10FF75;border-color:#005500"
-		document.getElementById("btnm9").style="height:3%;position:absolute;left:5px;bottom:80px;border-radius:12vw;background-color:#BEFFD4;border-color:#005500" 
-		document.getElementById("btnm10").style="height:3%;position:absolute;left:5px;bottom:55px;border-radius:12vw;background-color:#8cFF8c;border-color:#005500"
-		document.getElementById("btnm11").style="height:3%;position:absolute;left:5px;bottom:30px;border-radius:12vw;background-color:#b4FFb4;border-color:#005500"
-		document.getElementById("btnm12").style="height:3%;position:absolute;left:5px;bottom:5px;border-radius:12vw;background-color:#fcFF3c;border-color:#005500" 
-		document.getElementById("btn4").style="height:3%;position:absolute;right:5px;top:5px;border-radius:12vw;background-color:#CCFF34;border-color:#005500"
-		document.getElementById("btn5").style="height:3%;position:absolute;right:5px;top:30px;border-radius:12vw;background-color:#AAFFAA;border-color:#005500"
-		document.getElementById("btn6").style="height:3%;position:absolute;right:5px;top:55px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
-		document.getElementById("btn7").style="height:3%;position:absolute;right:5px;top:80px;border-radius:12vw;background-color:#ffFF00;border-color:#005500"
-		document.getElementById("btn8").style="height:3%;position:absolute;right:5px;top:105px;border-radius:12vw;background-color:#DBFFDB;border-color:#005500"
-		document.getElementById("btn9").style="height:3%;position:absolute;right:5px;top:130px;border-radius:12vw;background-color:#E5FFFF;border-color:#005500"
-		document.getElementById("btn10").style="height:3%;position:absolute;right:5px;top:155px;border-radius:12vw;background-color:#10FF75;border-color:#005500"
-		document.getElementById("btn11").style="height:3%;position:absolute;right:5px;top:180px;border-radius:12vw;background-color:#BEFFD4;border-color:#005500"
-		document.getElementById("btn12").style="height:3%;position:absolute;right:5px;top:205px;border-radius:12vw;background-color:#8cFF8c;border-color:#005500"
-		document.getElementById("btn13").style="height:3%;position:absolute;right:5px;top:230px;border-radius:12vw;background-color:#b4FFb4;border-color:#005500"
-		document.getElementById("btn14").style="height:3%;position:absolute;right:5px;top:255px;border-radius:12vw;background-color:#fcFF3c;border-color:#005500"
-	}
 	function checkBuy(){
 		if (gems >= copperCost){
 			var b = document.getElementById("btnm1");
@@ -475,13 +442,10 @@
 		document.getElementById("gps").innerHTML = "You are getting "+gps.toFixed(1)+" gems per second!"
 		document.getElementById("clickcount").innerHTML = "You are getting "+clickCount.toFixed(0)+" gems per click!" 
 		checkBuy()
-		if (Math.floor(Math.random() * 10000) === 12 && greenFlag === false){
-			greenFlag = true
+		if (Math.floor(Math.random() * 10000) === 12 && greenMode === false){
+			greenMode = true
 			alert("green mode activated")
 		 }
-		}
-		if (greenFlag === true){
-			greenMode()
 		}
 	
 	function myFunction(){
@@ -832,33 +796,10 @@
 		}
 
 	function apotheosis(){
-		divineGems = parseInt(localStorage.getItem("divineGems"))
-		new_divine_gems = Math.trunc(gems/10000000000)
-		divineGems += new_divine_gems
-		globalMultiplier = Math.pow(1.03,divineGems)
+		divine_gems = Math.round(gems/10000000000)
 		localStorage.clear()
-		localStorage.setItem("divineGems",divineGems)
-		localStorage.setItem("globalMultiplier",globalMultiplier)
-		sleep(500)
-		location.reload()
-		load()
-	}
-
-	function globalMultiply(){
-		globalMultiplier = parseFloat(localStorage.getItem("globalMultiplier"))
-		clickCount *= globalMultiplier
-		copperGPS *= globalMultiplier
-		bronzeGPS *= globalMultiplier
-		ironGPS *= globalMultiplier
-		silverGPS *= globalMultiplier
-		goldGPS *= globalMultiplier
-		platinumGPS *= globalMultiplier
-		diamondGPS *= globalMultiplier
-		emeraldGPS *= globalMultiplier
-		amethystGPS *= globalMultiplier
-		mithrilGPS *= globalMultiplier
-		titaniumGPS *= globalMultiplier
-		awesomiumGPS *= globalMultiplier
+		localStorage.setItem("divine_gems",divine_gems)
+		window.open(apotheosis.html)
 	}
 
 	function updateBtns(){
@@ -1062,11 +1003,6 @@
 			cup9 = localStorage.getItem("cup9")
 			cup10 = localStorage.getItem("cup10")
 			cup11 = localStorage.getItem("cup11")
-			divineGems = parseInt(localStorage.getItem("divineGems"))
-			globalMultiplier = localStorage.getItem("globalMultiplier")
-			if (localStorage.getItem("unloaded") != false){
-				localStorage.getItem("unloaded")
-			}
 			mineTier = localStorage.getItem("mineTier")
 			if ("lastDate" in localStorage){
 				lastDate = localStorage.getItem("lastDate")
@@ -1077,12 +1013,7 @@
 				
 			}
 			document.getElementById("pickaxe").style.transform = "rotate("+rotate+"deg)"
-			if(unloaded === undefined){
-				globalMultiplier = parseFloat(localStorage.getItem("globalMultiplier"))
-				globalMultiply()
-			}
 			unloaded = false
-			localStorage.setItem("unloaded",unloaded)
 			cup1 = (cup1 === "true")
 			cup2 = (cup2 === "true")
 			cup3 = (cup3 === "true")
@@ -1106,7 +1037,6 @@
 			flag10 = (flag10 === "true")
 			flag11 = (flag11 === "true")
 			flag12 = (flag12 === "true")
-			divineGems = parseInt(localStorage.getItem("divineGems"))
 		if (cup1 === true){		
 			document.getElementById("btn4").innerHTML = "Purchased"
 			document.getElementById("pickaxe").src = "Bronze_Pick.png"
