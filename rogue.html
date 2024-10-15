@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<p id="coords">x = 0 y = 0</p>
+<style>
+canvas {
+    border:1px solid #000000;
+    background-color: #f1f1f1;
+    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    display:block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+var myGamePiece
+var enemy
+var mySpike
+var crash
+var sprint_flag = false
+
+function rng(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function startGame() {
+  myGameArea.start();
+  myGamePiece = new component(30, 30, "red", 10, 120)
+  enemy = new component(30,30,"black",rng(1080),rng(540))
+  //mySpike = new component(50,200,"#6f7c00",300,120)
+}
+
+var myGameArea = {
+  canvas : document.createElement("canvas"),
+  start : function() {
+    this.canvas.width = 1080;
+    var canwidth = 1080
+    this.canvas.height = 540;
+    var canheight = 540
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    this.interval = setInterval(updateGameArea, 20);
+    this.interval = setInterval(spawn, 10000)
+    myGameArea.keys = (myGameArea.keys || []);
+    window.addEventListener('keydown', function (e) {
+        myGameArea.keys[e.keyCode] = (e.type == "keydown");
+    })
+    window.addEventListener('keyup', function (e) {
+        myGameArea.keys[e.keyCode] = (e.type == "keyuo");   
+    })
+  },
+  clear : function() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+  stop : function() {
+    clearInterval(this.interval)
+  }
+}
+
+function component(width,height,color,x,y){
+    this.gamearea = myGameArea
+    this.width = width
+    this.height = height
+    this.speedX = 0
+    this.speedY = 0
+    this.x = x
+    this.y = y
+    this.update = function(){
+        ctx = myGameArea.context
+        ctx.fillStyle = color
+        ctx.fillRect(this.x,this.y,this.width,this.height)
+        document.getElementById("coords").innerHTML = "x="+myGamePiece.x+" y="+myGamePiece.y
+    }
+    this.newPos = function(){
+        this.x += this.speedX
+        this.y += this.speedY
+    }
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+          crash = false;
+        } else{
+          crash = true
+        }
+        return crash;
+        return debug
+        }
+    this.atEdge = function(){
+      var left = 0
+      var right = myGameArea.canvas.width
+      var top = 0
+      var bottom = myGameArea.canvas.height
+      var my_left = this.x
+      var my_right = this.x + this.width
+      var my_top = this.y
+      var my_bottom = this.y + this.height
+      if(my_left <= left){
+        return "left"
+      } else if(my_right >= right){
+        return "right"
+      } else if(my_top <= top){
+        return "top"
+      } else if (my_bottom >= bottom){
+        return "bottom"
+      }
+      
+    }
+    this.pathfind_to_player = function(){
+      playerX = myGamePiece.x
+      playerY = myGamePiece.y
+      if(this.y > playerY){this.speedY = -1}
+      if(this.y < playerY){this.speedY = 1}
+      if(this.x < playerX){this.speedX = 1}
+      if(this.x > playerX){this.speedX = -1}
+      if(this.y > playerY && sprint_flag){this.speedY = -1.5}
+      if(this.y < playerY && sprint_flag){this.speedY = 1.5}
+      if(this.x < playerX && sprint_flag){this.speedX = 1.5}
+      if(this.x > playerX && sprint_flag){this.speedX = -1.5}
+      this.newPos()
+    }
+}
+
+function spawn(){
+  var placeholder = 0
+}
+
+function updateGameArea(){
+  if (myGamePiece.crashWith(enemy)) {
+    myGameArea.stop();
+    alert("You died!")
+    myGameArea.keys = []
+    myGamePiece.x = 10
+    myGamePiece.y = 120
+    enemy.x = rng(1080)
+    enemy.y = rng(540)
+  } else {
+    myGameArea.clear()
+    myGamePiece.speedX = 0
+    myGamePiece.speedY = 0
+    if (myGameArea.keys && myGameArea.keys[87] || myGameArea.keys[38] && !myGameArea.keys[16]){myGamePiece.speedY = -1; sprint_flag = false}
+    if (myGameArea.keys && myGameArea.keys[83] || myGameArea.keys[40] && !myGameArea.keys[16]){myGamePiece.speedY = 1; sprint_flag = false}
+    if (myGameArea.keys && myGameArea.keys[68] || myGameArea.keys[39] && !myGameArea.keys[16]){myGamePiece.speedX = 1; sprint_flag = false}
+    if (myGameArea.keys && myGameArea.keys[65] || myGameArea.keys[37] && !myGameArea.keys[16]){myGamePiece.speedX = -1; sprint_flag = false}
+    if (myGameArea.keys && myGameArea.keys[87] && myGameArea.keys[16] || myGameArea.keys[38] && myGameArea.keys[16]){myGamePiece.speedY = -2; sprint_flag = true}
+    if (myGameArea.keys && myGameArea.keys[83] && myGameArea.keys[16] || myGameArea.keys[40] && myGameArea.keys[16]){myGamePiece.speedY = 2; sprint_flag = true}
+    if (myGameArea.keys && myGameArea.keys[68] && myGameArea.keys[16] || myGameArea.keys[39] && myGameArea.keys[16]){myGamePiece.speedX = 2; sprint_flag = true}
+    if (myGameArea.keys && myGameArea.keys[65] && myGameArea.keys[16] || myGameArea.keys[37] && myGameArea.keys[16]){myGamePiece.speedX = -2; sprint_flag = true}
+    if (myGamePiece.atEdge() == "left"){myGamePiece.speedX = 0; myGamePiece.x += 1}
+    if (myGamePiece.atEdge() == "right"){myGamePiece.speedX = 0; myGamePiece.x -= 1}
+    if (myGamePiece.atEdge() == "top"){myGamePiece.speedY = 0; myGamePiece.y += 1}
+    if (myGamePiece.atEdge() == "bottom"){myGamePiece.speedY = 0; myGamePiece.y -= 1}
+    
+    myGamePiece.newPos()
+    myGamePiece.update()
+    enemy.pathfind_to_player()
+    enemy.update()
+  }
+}
+
+startGame()
+</script>
+</body>
+</html>
